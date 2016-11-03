@@ -1,6 +1,6 @@
 
 
-fdf.config({
+sucker.config({
 	base:'',
 	paths:{
 		id:'js/id',
@@ -30,7 +30,7 @@ QUnit.config.openAll = true
 QUnit.test( "SET ID - 定义模块标识", function(assert) {
     assert.expect(1);
     var done1 = assert.async();
-    fdf.use('id', function (exp) {
+    sucker.use('id', function (exp) {
         assert.ok(exp === 'id ok', 'id/id.js = > define("id",function(){return "'+exp+'"})');
         done1();
     });
@@ -40,7 +40,7 @@ QUnit.module('AMD');
 QUnit.test( "AMD 加载模式", function(assert) {
     assert.expect(1);
     var done1 = assert.async();
-    fdf.use('AMD', function (exp) {
+    sucker.use('AMD', function (exp) {
         assert.ok(exp === 'dataAdataB', 'amd/amd.js = > define(["js/data/a","js/data/b"],function(a,b){return a+b}) // =>dataAdataB');
         done1();
     });
@@ -54,19 +54,19 @@ QUnit.test( "CMD 加载模式", function(assert) {
 	var done3 = assert.async();
     var done4 = assert.async();
 
-    fdf.use('CMD-return', function (exp) {
+    sucker.use('CMD-return', function (exp) {
         assert.ok(exp === 'cmd-return', 'cmd/return.js  = > define(function(require, exports, module){ return "return..." })');
         done1();
     });
-    fdf.use('CMD-exports', function (exp) {
+    sucker.use('CMD-exports', function (exp) {
         assert.ok(exp.a === 'cmd-exports', 'cmd/exports.js  = > define(function(require, exports, module){ exports.a = " ... " })');
         done2();
     });
-	fdf.use('CMD-require', function (exp) {
+	sucker.use('CMD-require', function (exp) {
         assert.ok(exp === 'dataAdataB', 'cmd/require.js  = > define(function(require, exports, module){ return require("data/a") + require("data/b") })');
         done3();
     });
-	fdf.use('CMD-module-exports', function (exp) {
+	sucker.use('CMD-module-exports', function (exp) {
         assert.ok(exp === 'dataA', 'cmd/module.exports.js  = > define(function(require, exports, module){ module.exports = "dataA" })');
         done4();
     });
@@ -81,19 +81,19 @@ QUnit.test( "DATA 数据模块", function(assert) {
 	var done3 = assert.async();
     var done4 = assert.async();
 
-    fdf.use('DATA-object', function (exp) {
+    sucker.use('DATA-object', function (exp) {
         assert.ok(exp.obj === 'simple-object', 'simple/object.js = > define({"obj":"'+exp.obj+'"}) // 定义object 对象');
         done1();
     });
-	fdf.use('DATA-array', function (exp) {
+	sucker.use('DATA-array', function (exp) {
         assert.ok(exp[0] === 'simple-array', 'simple/array.js  = > define(["'+exp[0]+'"]) // 定义数组');
         done2();
     });
-	fdf.use('DATA-number', function (exp) {
+	sucker.use('DATA-number', function (exp) {
         assert.ok(exp === 123, 'simple/number.js  = > define('+exp+') // 定义数字');
         done3();
     });
-	fdf.use('DATA-string', function (exp) {
+	sucker.use('DATA-string', function (exp) {
         assert.ok(exp === 'simple-string', 'simple/string.js  = > define("'+exp+'") // 定义字符串');
         done4();
     });

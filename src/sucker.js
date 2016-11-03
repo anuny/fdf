@@ -6,8 +6,8 @@
 	scripts       = getTagName("script", doc), 
 	loaderScripts = scripts[scripts.length - 1], 
 	loaderSrc     = loaderScripts.hasAttribute ? loaderScripts.src :attr("src", 4),
-	baseSrc       = attr("fdf-base", 0) || loaderSrc,
-	configSrc     = attr("fdf-config", 0);
+	baseSrc       = attr("sucker-base", 0) || loaderSrc,
+	configSrc     = attr("sucker-config", 0);
 
     function attr(name, idx) {
         return loaderScripts.getAttribute(name, idx);
@@ -70,12 +70,12 @@
 		ERROR   : 'error'
     };
 	
-	var fdf = {
+	var sucker = {
         version : "0.0.1",
 		
         /**
-		 * FDF静态扩展
-		 * fdf.extend( { moduleName : factory } )
+		 * SUCKER静态扩展
+		 * sucker.extend( { moduleName : factory } )
 		 * @factory { anything... }
 		 */
         extend  : function(module) {
@@ -86,7 +86,7 @@
                 for (items in obj) {
                     if (obj[items] === target) continue;
                     deep && "object" === typeof obj[items] && obj[items] !== null ? (empty = Array == obj[items].constructor ? [] :{}, 
-                    target[items] = fdf.extend(deep, target[items] || empty, obj[items])) :target[items] = obj[items];
+                    target[items] = sucker.extend(deep, target[items] || empty, obj[items])) :target[items] = obj[items];
                 }
             }
             return target;
@@ -94,7 +94,7 @@
 		
 		 /**
 		 * 调试
-		 * fdf.log(type,msg)
+		 * sucker.log(type,msg)
 		 * @type { string }
 		 * @msg  { string }
 		 */
@@ -316,7 +316,7 @@
 					data.modMap[id].status === 'error';
 					callback();
 					execComplete(id);//加载失败执行队列
-					return fdf.log("error", 'Module ["'+ modName +'"] is not defined');
+					return sucker.log("error", 'Module ["'+ modName +'"] is not defined');
 				}
             });
             return;
@@ -420,7 +420,7 @@
         }
 
         if (callback && 'function' !== typeof callback) {
-            return fdf.log("error", 'fdf.use arguments type error');
+            return sucker.log("error", 'sucker.use arguments type error');
         }
 
 		//默认为当前脚本的路径或baseurl
@@ -456,9 +456,9 @@
 	
 	/**
      * 配置
-     * @config  fdf.config(params)
+     * @config  sucker.config(params)
 	 * @params  {Object}  配置参数
-	 * @fdf.config({
+	 * @sucker.config({
 		base:'http://xxx.com/static/', 模块根路径
 		paths:{ 模块目录
 			js : 'js/'   => http://xxx.com/static/js/
@@ -491,8 +491,8 @@
 		var base   = getDirname(configs.base);
 		use(base + data.configUrl)
 	};
-	fdf.config = config
-	fdf.use = use
-	fdf.define = w.define = define;
-    w.fdf = w.FDF = fdf;
+	sucker.config = config
+	sucker.use = use
+	sucker.define = w.define = define;
+    w.sucker = w.SUCKER = sucker;
 }(window));
