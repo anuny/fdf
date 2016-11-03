@@ -1,7 +1,7 @@
 {
-  "name": "feijs",
+  "name": "FDF",
   "version": "1.0.0",
-  "description": "Front-end Automation",
+  "description": "A Module Loader for the Web",
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp"
@@ -15,7 +15,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git://github.com/anuny/feijs.git"
+    "url": "git@github.com:anuny/fdf.git"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
