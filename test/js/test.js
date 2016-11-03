@@ -1,4 +1,4 @@
-module('FDF');
+
 
 fdf.config({
 	base:'',
@@ -25,7 +25,8 @@ fdf.config({
 	debug : true
 });
 
-
+QUnit.module('SET ID');
+QUnit.config.openAll = true
 QUnit.test( "SET ID - 定义模块标识", function(assert) {
     assert.expect(1);
     var done1 = assert.async();
@@ -35,6 +36,7 @@ QUnit.test( "SET ID - 定义模块标识", function(assert) {
     });
 });
 
+QUnit.module('AMD');
 QUnit.test( "AMD 加载模式", function(assert) {
     assert.expect(1);
     var done1 = assert.async();
@@ -44,6 +46,7 @@ QUnit.test( "AMD 加载模式", function(assert) {
     });
 });
 
+QUnit.module('CMD');
 QUnit.test( "CMD 加载模式", function(assert) {
     assert.expect(4);
     var done1 = assert.async();
@@ -70,6 +73,7 @@ QUnit.test( "CMD 加载模式", function(assert) {
 	
 });
 
+QUnit.module('DATA');
 QUnit.test( "DATA 数据模块", function(assert) {
     assert.expect(4);
     var done1 = assert.async();
